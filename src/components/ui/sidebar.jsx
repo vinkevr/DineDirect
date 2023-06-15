@@ -1,6 +1,6 @@
 import React from 'react';
 import miImagen from '/src/images/DineDirect.png';
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation,Outlet } from 'react-router-dom'
 
 const Sidebar = () => {
     const location = useLocation();
@@ -11,6 +11,7 @@ const Sidebar = () => {
     };
   
     return ( 
+        <>
         <div className="md:w-2/5 xl:w-1/5 bg-blue-950 flex justify-center">
             <div className='p-6'> 
                 
@@ -26,6 +27,8 @@ const Sidebar = () => {
                 </nav>
             </div>
         </div>
+        <Outlet />
+        </>
      );
 }
  

@@ -28,6 +28,7 @@ const NuevoPlatillo = () => {
             categoria: '',
             imagen: '',
             descripcion: '',
+            Ingredientes: '',
         }, 
         validationSchema: Yup.object({
             nombre: Yup.string()
@@ -41,6 +42,9 @@ const NuevoPlatillo = () => {
             descripcion: Yup.string()
                         .min(10, 'La descripción debe ser más larga')
                         .required('La descripción es obligatoria'), 
+            Ingredientes: Yup.string()
+                        .min(3, 'Debe tener al menos un ingrediente')
+                        .required('Los ingredientes son obligatorios'),
         }),
         onSubmit: platillo => {
             try {
@@ -211,6 +215,27 @@ const NuevoPlatillo = () => {
                             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
                                 <p className="font-bold">Hubo un error:</p>
                                 <p>{formik.errors.descripcion} </p>
+                            </div>
+                        ) : null }
+
+                            <div className="mb-4">
+                            <label className="text-start block text-gray-700 text-sm font-bold mb-2" htmlFor="ingred">Ingredientes</label>
+                            <input 
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:outline-blue-500 focus:shadow-outline"
+                                id="Ingredientes"
+                                type="text"
+                                placeholder="Ingredientes Platillo"
+                                value={formik.values.Ingredientes}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                
+                            />
+                            </div>
+
+                            { formik.touched.Ingredientes && formik.errors.Ingredientes ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.Ingredientes} </p>
                             </div>
                         ) : null }
                         

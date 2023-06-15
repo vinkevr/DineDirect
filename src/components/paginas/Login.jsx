@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import firebase from 'firebase/compat/app';
 import Imagen from '/src/images/dinedirectbg.png';
 import 'firebase/compat/auth';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
+      navigate("/");
       console.log('Inicio de sesión exitoso');
     } catch (error) {
       setError(error.message);
@@ -48,7 +51,7 @@ const Login = () => {
           </label>
           <input
             type="password"
-            id="password"
+            id="password" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full border border-gray-300 px-3 py-2 rounded"
